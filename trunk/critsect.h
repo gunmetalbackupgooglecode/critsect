@@ -21,6 +21,7 @@ NTSTATUS EnterCriticalSection (PRTL_CRITICAL_SECTION Section);
 NTSTATUS LeaveCriticalSection (PRTL_CRITICAL_SECTION Section);
 NTSTATUS InitializeCriticalSection (PRTL_CRITICAL_SECTION Section, ULONG SpinCount);
 VOID InitDeferedCriticalSection ();
+VOID DeleteCriticalSection (PRTL_CRITICAL_SECTION Section);
 
 VOID _WaitForCriticalSection (PRTL_CRITICAL_SECTION Section);
 VOID _UnwaitCriticalSection (PRTL_CRITICAL_SECTION Section);
