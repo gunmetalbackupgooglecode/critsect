@@ -351,3 +351,30 @@ VOID InitDeferedCriticalSection ()
 
 	_CritSectInitialized = TRUE;
 }
+
+VOID DeleteCriticalSection (PRTL_CRITICAL_SECTION Section)
+{
+	NTSTATUS st;
+
+	if (Section->LockSemaphore)
+	{
+		st = ZwClose (Section->LockSemaphore);
+		if (!NT_SUCCESS(st))
+			ExRaiseStatus (st);
+	}
+
+	EnterCriticalSection (&CriticalSectionLock);
+	__try
+	{
+		RemoveEntryList (&Section->DebugInfo->ProcessLocksList);
+	}
+	__finally
+	{
+		LeaveCriticalSection (&CriticalSectionLock);
+	}
+
+	if (Section->DebugInfo)
+		ExFreePool (Section->DebugInfo);
+
+	memset (Section, 0, sizeof(RTL_CRITICAL_SECTION));
+}

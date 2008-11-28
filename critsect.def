@@ -6,4 +6,5 @@ EXPORTS
 	InitDeferedCriticalSection
 	_WaitForCriticalSection
 	_UnwaitCriticalSection
+	DeleteCriticalSection
 	
