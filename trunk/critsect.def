@@ -1,0 +1,9 @@
+EXPORTS
+	TryEnterCriticalSection
+	EnterCriticalSection
+	LeaveCriticalSection
+	InitializeCriticalSection
+	InitDeferedCriticalSection
+	_WaitForCriticalSection
+	_UnwaitCriticalSection
+	
